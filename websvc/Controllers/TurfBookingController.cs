@@ -12,8 +12,8 @@ namespace websvc.Controllers
     {
            TurfBooking[] turfBooking = new TurfBooking[]
             {
-                new TurfBooking { Id =1,TurfMaster =new TurfMaster{Id=1,Description="Bridge"} },
-                new TurfBooking {Id =2},
+                new TurfBooking { Id =1,TurfMaster =new TurfMaster{Id=1,Description="Bridge", Location="Feroke"} },
+                new TurfBooking {Id =2,Time="10:00", RegistrationDate="12-1-2019", Amount=1000, ApprovedStatus="Waiting"},
                 new TurfBooking {Id =3}
             };
 
