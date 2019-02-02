@@ -101,8 +101,6 @@
     <Compile Include="Controllers\TurfGroupController.cs" />
     <Compile Include="Controllers\TurfMasterController.cs" />
     <Compile Include="Controllers\TurfMediaController.cs" />
-    <Compile Include="Controllers\TurfTypeController.cs" />
-    <Compile Include="Controllers\TurfUserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
