@@ -382,9 +382,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegistrationDate" Type="String" Nullable="false" />
-          <Property Name="Time" Type="String" Nullable="false" />
-          <Property Name="Amount" Type="String" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" />
+          <Property Name="RegistrationTime" Type="DateTime" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" />
           <Property Name="ApprovedStatus" Type="String" Nullable="false" />
           <Property Name="PaymentStatus" Type="String" Nullable="false" />
           <NavigationProperty Name="TurfMaster" Relationship="Model1.TurfMasterTurfBooking" FromRole="TurfBooking" ToRole="TurfMaster" />
@@ -610,7 +610,7 @@
         <MappingFragment StoreEntitySet="TurfBookings">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
-          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="RegistrationTime" ColumnName="Time" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
           <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />

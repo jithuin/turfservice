@@ -13,8 +13,9 @@ namespace websvc.Controllers
            TurfBooking[] turfBooking = new TurfBooking[]
             {
                 new TurfBooking { Id =1,TurfMaster =new TurfMaster{Id=1,Description="Bridge", Location="Feroke"} },
-                new TurfBooking {Id =2,Time="10:00", RegistrationDate="12-1-2019", Amount=1000, ApprovedStatus="Waiting"},
-                new TurfBooking {Id =3}
+                new TurfBooking {Id =2,TurfMaster=new TurfMaster{Id=2, Name="FootOut", TypeofTurf=0, Location="Petta"} },
+                new TurfBooking {Id =3,TurfMaster=new TurfMaster{Id=3, Name="Game5", TypeofTurf=0, Location="Chungham"} },
+                new TurfBooking{Id =4,TurfMaster=new TurfMaster{Id=4, Name="fifa", TypeofTurf=0, Location="ramanattukara"} }
             };
 
             public TurfBooking[] Get()
