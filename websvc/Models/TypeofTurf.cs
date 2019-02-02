@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Collections.Generic;

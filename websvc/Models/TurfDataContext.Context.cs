@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Model1Container : DbContext
+    public partial class TurfModelContainer1 : DbContext
     {
-        public Model1Container()
-            : base("name=Model1Container")
+        public TurfModelContainer1()
+            : base("name=TurfModelContainer1")
         {
         }
     
@@ -29,9 +29,9 @@ namespace TurfManagement
         public virtual DbSet<TurfMaster> TurfMasters { get; set; }
         public virtual DbSet<TurfGroup> TurfGroups { get; set; }
         public virtual DbSet<TypeofTurf> TypeofTurfs { get; set; }
-        public virtual DbSet<TurfFecilityMaster> TurfFecilityMasters { get; set; }
         public virtual DbSet<TurfMedia> TurfMedias { get; set; }
         public virtual DbSet<TurfBooking> TurfBookings { get; set; }
+        public virtual DbSet<TurfFecilityMaster> TurfFecilityMasters { get; set; }
         public virtual DbSet<TurfFacilityList> TurfFacilityLists { get; set; }
         public virtual DbSet<TurfBookingFacilityList> TurfBookingFacilityLists { get; set; }
     }

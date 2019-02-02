@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace TurfManagement
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TurfBooking()
         {
-            this.TurfBookingFacilityLists = new HashSet<TurfBookingFacilityList>();
+            this.TurfMasters = new HashSet<TurfMaster>();
         }
     
         public int Id { get; set; }
@@ -26,13 +26,12 @@ namespace TurfManagement
         public Nullable<decimal> Amount { get; set; }
         public string ApprovedStatus { get; set; }
         public string PaymentStatus { get; set; }
+        public string AprovalDate { get; set; }
         public int TurfMasterId { get; set; }
         public int TurfUserId { get; set; }
-        public string AprovalDate { get; set; }
     
-        public virtual TurfMaster TurfMaster { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfBookingFacilityList> TurfBookingFacilityLists { get; set; }
         public virtual TurfUser TurfUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TurfMaster> TurfMasters { get; set; }
     }
 }

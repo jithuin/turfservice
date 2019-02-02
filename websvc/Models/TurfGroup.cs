@@ -7,17 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TurfMedia
+    public partial class TurfGroup
     {
         public int Id { get; set; }
-        public string FileLocation { get; set; }
-        public int TurfMasterId { get; set; }
+        public string Discription { get; set; }
+        public int TurfUserId { get; set; }
     
-        public virtual TurfMaster TurfMaster { get; set; }
+        public virtual TurfUser TurfUser { get; set; }
     }
 }

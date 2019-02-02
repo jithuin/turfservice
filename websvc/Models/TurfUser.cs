@@ -7,36 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TurfMaster
+    public partial class TurfUser
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TurfMaster()
+        public TurfUser()
         {
+            this.TurfMasters = new HashSet<TurfMaster>();
             this.TurfBookings = new HashSet<TurfBooking>();
-            this.TurfFacilityLists = new HashSet<TurfFacilityList>();
-            this.TurfMedias = new HashSet<TurfMedia>();
+            this.TurfGroups = new HashSet<TurfGroup>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public string Location { get; set; }
-        public int TurfGroupId { get; set; }
-        public int TurfUserId { get; set; }
-        public int TypeofTurfId { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Address { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string UserType { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TurfMaster> TurfMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TurfBooking> TurfBookings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfFacilityList> TurfFacilityLists { get; set; }
-        public virtual TurfUser TurfUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfMedia> TurfMedias { get; set; }
-        public virtual TypeofTurf TypeofTurf { get; set; }
+        public virtual ICollection<TurfGroup> TurfGroups { get; set; }
     }
 }

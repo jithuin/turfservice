@@ -7,22 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TurfBookingFacilityList
+    public partial class TurfFacilityList
     {
         public int Id { get; set; }
-        public string TurfFacilityMasterId { get; set; }
-        public string BookingId { get; set; }
+        public string Description { get; set; }
         public string Amount { get; set; }
         public int TurfMasterId { get; set; }
         public int TurfFecilityMasterId { get; set; }
-        public int TurfBookingId { get; set; }
+        public string IsDefault { get; set; }
     
         public virtual TurfFecilityMaster TurfFecilityMaster { get; set; }
-        public virtual TurfBooking TurfBooking { get; set; }
+        public virtual TurfMaster TurfMaster { get; set; }
     }
 }

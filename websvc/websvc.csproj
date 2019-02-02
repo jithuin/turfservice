@@ -89,6 +89,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\TurfDataContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TurfDataContext.Context.cs</LastGenOutput>
+      <DependentUpon>TurfModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\TurfDataContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TurfDataContext.cs</LastGenOutput>
+      <DependentUpon>TurfModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\TurfModel.edmx.sql" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -101,12 +112,62 @@
     <Compile Include="Controllers\TurfGroupController.cs" />
     <Compile Include="Controllers\TurfMasterController.cs" />
     <Compile Include="Controllers\TurfMediaController.cs" />
+    <Compile Include="Controllers\TypeofTurfsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfBooking.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfBookingFacilityList.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfDataContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TurfDataContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfDataContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfFacilityList.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfFecilityMaster.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfGroup.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfMaster.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfMedia.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TurfModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TurfUser.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TypeofTurf.cs">
+      <DependentUpon>TurfDataContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\TurfModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TurfModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TurfModel.edmx.diagram">
+      <DependentUpon>TurfModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -117,13 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TurfModel\TurfManagement.csproj">
-      <Project>{d3317f29-9ad5-48ec-a6c6-ea96d584a478}</Project>
-      <Name>TurfManagement</Name>
-    </ProjectReference>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -7,34 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TurfManagement
+namespace websvc.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class TurfUser
+    public partial class TurfMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TurfUser()
+        public TurfMaster()
         {
-            this.TurfMasters = new HashSet<TurfMaster>();
-            this.TurfBookings = new HashSet<TurfBooking>();
-            this.TurfGroups = new HashSet<TurfGroup>();
+            this.TurfMedias = new HashSet<TurfMedia>();
+            this.TurfFacilityLists = new HashSet<TurfFacilityList>();
         }
     
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string UserType { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+        public int TurfGroupId { get; set; }
+        public int TurfUserId { get; set; }
+        public int TypeofTurfId { get; set; }
     
+        public virtual TurfUser TurfUser { get; set; }
+        public virtual TypeofTurf TypeofTurf { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfMaster> TurfMasters { get; set; }
+        public virtual ICollection<TurfMedia> TurfMedias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfBooking> TurfBookings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfGroup> TurfGroups { get; set; }
+        public virtual ICollection<TurfFacilityList> TurfFacilityLists { get; set; }
+        public virtual TurfBooking TurfBooking { get; set; }
     }
 }
