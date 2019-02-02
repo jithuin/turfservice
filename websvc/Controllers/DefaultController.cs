@@ -15,10 +15,13 @@ namespace websvc.Controllers
        {
             new Products { id = 1, category = "Sugar" ,packets =new Packing[]{ new Packing {id=1,description ="1x5kg"} , new Packing { id = 2, description = "5x5kg" } } },
             new Products { id = 2, category = "Salt" },
-            new Products { id = 3, category = "Turf" }};
+            new Products { id = 3, category = "Turf" },
+            new Products { id = 4, category = "Choco" }
+       };
 
         public Products[] Get()
         {
+            
 
                    return products;
 
