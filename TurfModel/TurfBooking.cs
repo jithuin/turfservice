@@ -21,9 +21,9 @@ namespace TurfManagement
         }
     
         public int Id { get; set; }
-        public System.DateTime RegistrationDate { get; set; }
-        public System.DateTime RegistrationTime { get; set; }
-        public decimal Amount { get; set; }
+        public Nullable<System.DateTime> RegistrationDate { get; set; }
+        public Nullable<System.DateTime> RegistrationTime { get; set; }
+        public Nullable<decimal> Amount { get; set; }
         public string ApprovedStatus { get; set; }
         public string PaymentStatus { get; set; }
         public int TurfMasterId { get; set; }

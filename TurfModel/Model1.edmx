@@ -382,11 +382,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" />
-          <Property Name="RegistrationTime" Type="DateTime" Nullable="false" />
-          <Property Name="Amount" Type="Decimal" Nullable="false" />
+          <Property Name="RegistrationDate" Type="DateTime" />
+          <Property Name="RegistrationTime" Type="DateTime" />
+          <Property Name="Amount" Type="Decimal" />
           <Property Name="ApprovedStatus" Type="String" Nullable="false" />
-          <Property Name="PaymentStatus" Type="String" Nullable="false" />
+          <Property Name="PaymentStatus" Type="String" />
           <NavigationProperty Name="TurfMaster" Relationship="Model1.TurfMasterTurfBooking" FromRole="TurfBooking" ToRole="TurfMaster" />
           <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfBookingFacilityLists" Relationship="Model1.TurfBookingTurfBookingFacilityList" FromRole="TurfBooking" ToRole="TurfBookingFacilityList" />
