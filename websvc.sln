@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "websvc", "websvc\websvc.csproj", "{002128A1-2049-49A7-8D41-B0B723174B60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurfManagement", "C:\Users\Nashid Muhammed\source\repos\TurfManagement\TurfManagement\TurfManagement.csproj", "{D3317F29-9AD5-48EC-A6C6-EA96D584A478}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{002128A1-2049-49A7-8D41-B0B723174B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002128A1-2049-49A7-8D41-B0B723174B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002128A1-2049-49A7-8D41-B0B723174B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002128A1-2049-49A7-8D41-B0B723174B60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3317F29-9AD5-48EC-A6C6-EA96D584A478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3317F29-9AD5-48EC-A6C6-EA96D584A478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3317F29-9AD5-48EC-A6C6-EA96D584A478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3317F29-9AD5-48EC-A6C6-EA96D584A478}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9AD26DA-F36E-46D9-926D-4719CAC390AF}
+	EndGlobalSection
+EndGlobal
