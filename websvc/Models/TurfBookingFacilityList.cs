@@ -14,14 +14,18 @@ namespace websvc.Models
     
     public partial class TurfBookingFacilityList
     {
-        public int Id { get; set; }
-        public string TurfFacilityMasterId { get; set; }
-        public string BookingId { get; set; }
-        public string Amount { get; set; }
-        public int TurfMasterId { get; set; }
-        public int TurfFecilityMasterId { get; set; }
-        public int TurfBookingId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TurfBookingFacilityList()
+        {
+            this.Amount = 0.00m;
+        }
     
-        public virtual TurfFecilityMaster TurfFecilityMaster { get; set; }
+        public int Id { get; set; }
+        public Nullable<decimal> Amount { get; set; }
+        public int TurfBookingId { get; set; }
+        public int TurfFacilityListId { get; set; }
+    
+        public virtual TurfBooking TurfBooking { get; set; }
+        public virtual TurfFacilityList TurfFacilityList { get; set; }
     }
 }

@@ -17,21 +17,23 @@ namespace websvc.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TurfBooking()
         {
-            this.TurfMasters = new HashSet<TurfMaster>();
+            this.Amount = 0.00m;
+            this.TurfBookingFacilityLists = new HashSet<TurfBookingFacilityList>();
         }
     
         public int Id { get; set; }
         public Nullable<System.DateTime> RegistrationDate { get; set; }
         public Nullable<System.DateTime> RegistrationTime { get; set; }
         public Nullable<decimal> Amount { get; set; }
-        public string ApprovedStatus { get; set; }
-        public string PaymentStatus { get; set; }
-        public string AprovalDate { get; set; }
-        public int TurfMasterId { get; set; }
+        public Nullable<int> ApprovedStatus { get; set; }
+        public Nullable<int> PaymentStatus { get; set; }
+        public Nullable<System.DateTime> AprovalDate { get; set; }
         public int TurfUserId { get; set; }
+        public int TurfMasterId { get; set; }
     
         public virtual TurfUser TurfUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfMaster> TurfMasters { get; set; }
+        public virtual ICollection<TurfBookingFacilityList> TurfBookingFacilityLists { get; set; }
+        public virtual TurfMaster TurfMaster { get; set; }
     }
 }

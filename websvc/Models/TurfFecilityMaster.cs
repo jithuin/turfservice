@@ -18,7 +18,6 @@ namespace websvc.Models
         public TurfFecilityMaster()
         {
             this.TurfFacilityLists = new HashSet<TurfFacilityList>();
-            this.TurfBookingFacilityLists = new HashSet<TurfBookingFacilityList>();
         }
     
         public int Id { get; set; }
@@ -26,7 +25,5 @@ namespace websvc.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TurfFacilityList> TurfFacilityLists { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TurfBookingFacilityList> TurfBookingFacilityLists { get; set; }
     }
 }

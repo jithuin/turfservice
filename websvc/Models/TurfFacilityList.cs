@@ -14,14 +14,23 @@ namespace websvc.Models
     
     public partial class TurfFacilityList
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TurfFacilityList()
+        {
+            this.IsDefault = 0;
+            this.TurfBookingFacilityLists = new HashSet<TurfBookingFacilityList>();
+        }
+    
         public int Id { get; set; }
         public string Description { get; set; }
-        public string Amount { get; set; }
+        public decimal Amount { get; set; }
+        public int IsDefault { get; set; }
         public int TurfMasterId { get; set; }
         public int TurfFecilityMasterId { get; set; }
-        public string IsDefault { get; set; }
     
         public virtual TurfFecilityMaster TurfFecilityMaster { get; set; }
         public virtual TurfMaster TurfMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TurfBookingFacilityList> TurfBookingFacilityLists { get; set; }
     }
 }

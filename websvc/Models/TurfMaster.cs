@@ -19,13 +19,15 @@ namespace websvc.Models
         {
             this.TurfMedias = new HashSet<TurfMedia>();
             this.TurfFacilityLists = new HashSet<TurfFacilityList>();
+            this.TurfBookings = new HashSet<TurfBooking>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
-        public int TurfGroupId { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
         public int TurfUserId { get; set; }
         public int TypeofTurfId { get; set; }
     
@@ -35,6 +37,7 @@ namespace websvc.Models
         public virtual ICollection<TurfMedia> TurfMedias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TurfFacilityList> TurfFacilityLists { get; set; }
-        public virtual TurfBooking TurfBooking { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TurfBooking> TurfBookings { get; set; }
     }
 }

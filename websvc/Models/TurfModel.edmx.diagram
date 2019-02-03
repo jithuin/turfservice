@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3e1b91e719c041e3897f896ad67830cc" Name="Diagram1" ZoomLevel="72" >
+      <Diagram DiagramId="3e1b91e719c041e3897f896ad67830cc" Name="Diagram1" ZoomLevel="108" >
         <EntityTypeShape EntityType="TurfModel.TurfUser" Width="1.5" PointX="0.75" PointY="6.125" />
         <EntityTypeShape EntityType="TurfModel.TurfMaster" Width="1.5" PointX="3" PointY="4.125" />
         <EntityTypeShape EntityType="TurfModel.TurfGroup" Width="1.5" PointX="3" PointY="8.75" />
@@ -13,15 +13,16 @@
         <EntityTypeShape EntityType="TurfModel.TurfBooking" Width="1.5" PointX="3" PointY="11.375" />
         <EntityTypeShape EntityType="TurfModel.TurfFecilityMaster" Width="1.5" PointX="3" PointY="0.75" />
         <EntityTypeShape EntityType="TurfModel.TurfFacilityList" Width="1.5" PointX="5.25" PointY="1.375" />
-        <EntityTypeShape EntityType="TurfModel.TurfBookingFacilityList" Width="1.5" PointX="5.25" PointY="8" />
         <AssociationConnector Association="TurfModel.TurfUserTurfMaster" />
         <AssociationConnector Association="TurfModel.TurfUserTurfBooking" />
         <AssociationConnector Association="TurfModel.TurfUserTurfGroup" />
         <AssociationConnector Association="TurfModel.TypeofTurfTurfMaster" />
         <AssociationConnector Association="TurfModel.TurfMasterTurfMedia" />
         <AssociationConnector Association="TurfModel.TurfFecilityMasterTurfFacilityList" />
-        <AssociationConnector Association="TurfModel.TurfFecilityMasterTurfBookingFacilityList" />
         <AssociationConnector Association="TurfModel.TurfMasterTurfFacilityList" />
+        <EntityTypeShape EntityType="TurfModel.TurfBookingFacilityList" Width="2.875" PointX="6.375" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="TurfModel.TurfBookingTurfBookingFacilityList" />
+        <AssociationConnector Association="TurfModel.TurfBookingFacilityListTurfFacilityList" />
         <AssociationConnector Association="TurfModel.TurfMasterTurfBooking" />
       </Diagram>
     </edmx:Diagrams>

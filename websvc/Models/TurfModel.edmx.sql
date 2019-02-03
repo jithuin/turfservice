@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/02/2019 19:56:54
+-- Date Created: 02/03/2019 12:06:09
 -- Generated from EDMX file: D:\TheBackup\OneDrive\Projects\TurfProjects\Projects\websvc\websvc\Models\TurfModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,59 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_TurfUserTurfMaster]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfMasters] DROP CONSTRAINT [FK_TurfUserTurfMaster];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfUserTurfBooking]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfBookings] DROP CONSTRAINT [FK_TurfUserTurfBooking];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfUserTurfGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfGroups] DROP CONSTRAINT [FK_TurfUserTurfGroup];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TypeofTurfTurfMaster]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfMasters] DROP CONSTRAINT [FK_TypeofTurfTurfMaster];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfMasterTurfMedia]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfMedias] DROP CONSTRAINT [FK_TurfMasterTurfMedia];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfFecilityMasterTurfFacilityList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfFacilityLists] DROP CONSTRAINT [FK_TurfFecilityMasterTurfFacilityList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfMasterTurfFacilityList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfFacilityLists] DROP CONSTRAINT [FK_TurfMasterTurfFacilityList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfMasterTurfBooking]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfMasters] DROP CONSTRAINT [FK_TurfMasterTurfBooking];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[TurfUsers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfUsers];
+GO
+IF OBJECT_ID(N'[dbo].[TurfMasters]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfMasters];
+GO
+IF OBJECT_ID(N'[dbo].[TurfGroups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfGroups];
+GO
+IF OBJECT_ID(N'[dbo].[TypeofTurfs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TypeofTurfs];
+GO
+IF OBJECT_ID(N'[dbo].[TurfMedias]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfMedias];
+GO
+IF OBJECT_ID(N'[dbo].[TurfBookings]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfBookings];
+GO
+IF OBJECT_ID(N'[dbo].[TurfFecilityMasters]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfFecilityMasters];
+GO
+IF OBJECT_ID(N'[dbo].[TurfFacilityLists]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfFacilityLists];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -35,7 +83,7 @@ CREATE TABLE [dbo].[TurfUsers] (
     [Address] nvarchar(max)  NOT NULL,
     [Email] nvarchar(max)  NOT NULL,
     [Phone] nvarchar(max)  NOT NULL,
-    [UserType] nvarchar(max)  NOT NULL
+    [UserType] smallint  NOT NULL
 );
 GO
 
@@ -45,10 +93,10 @@ CREATE TABLE [dbo].[TurfMasters] (
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [Location] nvarchar(max)  NOT NULL,
-    [TurfGroupId] int  NOT NULL,
+    [Address] nvarchar(max)  NOT NULL,
+    [Phone] nvarchar(max)  NOT NULL,
     [TurfUserId] int  NOT NULL,
-    [TypeofTurfId] int  NOT NULL,
-    [TurfBooking_Id] int  NOT NULL
+    [TypeofTurfId] int  NOT NULL
 );
 GO
 
@@ -80,12 +128,12 @@ CREATE TABLE [dbo].[TurfBookings] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [RegistrationDate] datetime  NULL,
     [RegistrationTime] datetime  NULL,
-    [Amount] decimal(18,0)  NULL,
-    [ApprovedStatus] nvarchar(max)  NULL,
-    [PaymentStatus] nvarchar(max)  NULL,
-    [AprovalDate] nvarchar(max)  NOT NULL,
-    [TurfMasterId] int  NOT NULL,
-    [TurfUserId] int  NOT NULL
+    [Amount] decimal(18,2)  NULL,
+    [ApprovedStatus] int  NULL,
+    [PaymentStatus] int  NULL,
+    [AprovalDate] datetime  NULL,
+    [TurfUserId] int  NOT NULL,
+    [TurfMasterId] int  NOT NULL
 );
 GO
 
@@ -100,22 +148,19 @@ GO
 CREATE TABLE [dbo].[TurfFacilityLists] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Amount] nvarchar(max)  NOT NULL,
+    [Amount] decimal(18,2)  NOT NULL,
+    [IsDefault] int  NOT NULL,
     [TurfMasterId] int  NOT NULL,
-    [TurfFecilityMasterId] int  NOT NULL,
-    [IsDefault] nvarchar(max)  NOT NULL
+    [TurfFecilityMasterId] int  NOT NULL
 );
 GO
 
 -- Creating table 'TurfBookingFacilityLists'
 CREATE TABLE [dbo].[TurfBookingFacilityLists] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [TurfFacilityMasterId] nvarchar(max)  NOT NULL,
-    [BookingId] nvarchar(max)  NOT NULL,
-    [Amount] nvarchar(max)  NOT NULL,
-    [TurfMasterId] int  NOT NULL,
-    [TurfFecilityMasterId] int  NOT NULL,
-    [TurfBookingId] int  NOT NULL
+    [Amount] decimal(18,2)  NULL,
+    [TurfBookingId] int  NOT NULL,
+    [TurfFacilityListId] int  NOT NULL
 );
 GO
 
@@ -271,21 +316,6 @@ ON [dbo].[TurfFacilityLists]
     ([TurfFecilityMasterId]);
 GO
 
--- Creating foreign key on [TurfFecilityMasterId] in table 'TurfBookingFacilityLists'
-ALTER TABLE [dbo].[TurfBookingFacilityLists]
-ADD CONSTRAINT [FK_TurfFecilityMasterTurfBookingFacilityList]
-    FOREIGN KEY ([TurfFecilityMasterId])
-    REFERENCES [dbo].[TurfFecilityMasters]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TurfFecilityMasterTurfBookingFacilityList'
-CREATE INDEX [IX_FK_TurfFecilityMasterTurfBookingFacilityList]
-ON [dbo].[TurfBookingFacilityLists]
-    ([TurfFecilityMasterId]);
-GO
-
 -- Creating foreign key on [TurfMasterId] in table 'TurfFacilityLists'
 ALTER TABLE [dbo].[TurfFacilityLists]
 ADD CONSTRAINT [FK_TurfMasterTurfFacilityList]
@@ -301,19 +331,49 @@ ON [dbo].[TurfFacilityLists]
     ([TurfMasterId]);
 GO
 
--- Creating foreign key on [TurfBooking_Id] in table 'TurfMasters'
-ALTER TABLE [dbo].[TurfMasters]
-ADD CONSTRAINT [FK_TurfMasterTurfBooking]
-    FOREIGN KEY ([TurfBooking_Id])
+-- Creating foreign key on [TurfBookingId] in table 'TurfBookingFacilityLists'
+ALTER TABLE [dbo].[TurfBookingFacilityLists]
+ADD CONSTRAINT [FK_TurfBookingTurfBookingFacilityList]
+    FOREIGN KEY ([TurfBookingId])
     REFERENCES [dbo].[TurfBookings]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TurfBookingTurfBookingFacilityList'
+CREATE INDEX [IX_FK_TurfBookingTurfBookingFacilityList]
+ON [dbo].[TurfBookingFacilityLists]
+    ([TurfBookingId]);
+GO
+
+-- Creating foreign key on [TurfFacilityListId] in table 'TurfBookingFacilityLists'
+ALTER TABLE [dbo].[TurfBookingFacilityLists]
+ADD CONSTRAINT [FK_TurfBookingFacilityListTurfFacilityList]
+    FOREIGN KEY ([TurfFacilityListId])
+    REFERENCES [dbo].[TurfFacilityLists]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TurfBookingFacilityListTurfFacilityList'
+CREATE INDEX [IX_FK_TurfBookingFacilityListTurfFacilityList]
+ON [dbo].[TurfBookingFacilityLists]
+    ([TurfFacilityListId]);
+GO
+
+-- Creating foreign key on [TurfMasterId] in table 'TurfBookings'
+ALTER TABLE [dbo].[TurfBookings]
+ADD CONSTRAINT [FK_TurfMasterTurfBooking]
+    FOREIGN KEY ([TurfMasterId])
+    REFERENCES [dbo].[TurfMasters]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_TurfMasterTurfBooking'
 CREATE INDEX [IX_FK_TurfMasterTurfBooking]
-ON [dbo].[TurfMasters]
-    ([TurfBooking_Id]);
+ON [dbo].[TurfBookings]
+    ([TurfMasterId]);
 GO
 
 -- --------------------------------------------------

@@ -39,17 +39,21 @@
       <End Role="TurfFecilityMaster" EntitySet="TurfFecilityMasters" />
       <End Role="TurfFacilityList" EntitySet="TurfFacilityLists" />
     </AssociationSet>
-    <AssociationSet Name="TurfFecilityMasterTurfBookingFacilityList" Association="TurfModel.Store.TurfFecilityMasterTurfBookingFacilityList">
-      <End Role="TurfFecilityMaster" EntitySet="TurfFecilityMasters" />
-      <End Role="TurfBookingFacilityList" EntitySet="TurfBookingFacilityLists" />
-    </AssociationSet>
     <AssociationSet Name="TurfMasterTurfFacilityList" Association="TurfModel.Store.TurfMasterTurfFacilityList">
       <End Role="TurfMaster" EntitySet="TurfMasters" />
       <End Role="TurfFacilityList" EntitySet="TurfFacilityLists" />
     </AssociationSet>
-    <AssociationSet Name="TurfMasterTurfBooking" Association="TurfModel.Store.TurfMasterTurfBooking">
+    <AssociationSet Name="TurfBookingTurfBookingFacilityList" Association="TurfModel.Store.TurfBookingTurfBookingFacilityList">
       <End Role="TurfBooking" EntitySet="TurfBookings" />
+      <End Role="TurfBookingFacilityList" EntitySet="TurfBookingFacilityLists" />
+    </AssociationSet>
+    <AssociationSet Name="TurfBookingFacilityListTurfFacilityList" Association="TurfModel.Store.TurfBookingFacilityListTurfFacilityList">
+      <End Role="TurfFacilityList" EntitySet="TurfFacilityLists" />
+      <End Role="TurfBookingFacilityList" EntitySet="TurfBookingFacilityLists" />
+    </AssociationSet>
+    <AssociationSet Name="TurfMasterTurfBooking" Association="TurfModel.Store.TurfMasterTurfBooking">
       <End Role="TurfMaster" EntitySet="TurfMasters" />
+      <End Role="TurfBooking" EntitySet="TurfBookings" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="TurfUsers">
@@ -62,7 +66,7 @@
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserType" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserType" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="TurfMasters">
     <Key>
@@ -72,10 +76,10 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TurfGroupId" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TurfUserId" Type="int" Nullable="false" />
     <Property Name="TypeofTurfId" Type="int" Nullable="false" />
-    <Property Name="TurfBooking_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TurfGroups">
     <Key>
@@ -107,12 +111,12 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RegistrationDate" Type="datetime" Nullable="true" />
     <Property Name="RegistrationTime" Type="datetime" Nullable="true" />
-    <Property Name="Amount" Type="decimal" Nullable="true" />
-    <Property Name="ApprovedStatus" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="PaymentStatus" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="AprovalDate" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TurfMasterId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="true" DefaultValue="0.00" Precision="18" Scale="2" />
+    <Property Name="ApprovedStatus" Type="int" Nullable="true" />
+    <Property Name="PaymentStatus" Type="int" Nullable="true" />
+    <Property Name="AprovalDate" Type="datetime" Nullable="true" />
     <Property Name="TurfUserId" Type="int" Nullable="false" />
+    <Property Name="TurfMasterId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TurfFecilityMasters">
     <Key>
@@ -127,22 +131,19 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IsDefault" Type="int" Nullable="false" DefaultValue="0" />
     <Property Name="TurfMasterId" Type="int" Nullable="false" />
     <Property Name="TurfFecilityMasterId" Type="int" Nullable="false" />
-    <Property Name="IsDefault" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="TurfBookingFacilityLists">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TurfFacilityMasterId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="BookingId" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="TurfMasterId" Type="int" Nullable="false" />
-    <Property Name="TurfFecilityMasterId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="true" DefaultValue="0.00" Precision="18" Scale="2" />
     <Property Name="TurfBookingId" Type="int" Nullable="false" />
+    <Property Name="TurfFacilityListId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="TurfUserTurfMaster">
     <End Role="TurfUser" Type="TurfModel.Store.TurfUsers" Multiplicity="1" />
@@ -216,18 +217,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="TurfFecilityMasterTurfBookingFacilityList">
-    <End Role="TurfFecilityMaster" Type="TurfModel.Store.TurfFecilityMasters" Multiplicity="1" />
-    <End Role="TurfBookingFacilityList" Type="TurfModel.Store.TurfBookingFacilityLists" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TurfFecilityMaster">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TurfBookingFacilityList">
-        <PropertyRef Name="TurfFecilityMasterId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="TurfMasterTurfFacilityList">
     <End Role="TurfMaster" Type="TurfModel.Store.TurfMasters" Multiplicity="1" />
     <End Role="TurfFacilityList" Type="TurfModel.Store.TurfFacilityLists" Multiplicity="*" />
@@ -240,15 +229,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="TurfMasterTurfBooking">
+  <Association Name="TurfBookingTurfBookingFacilityList">
     <End Role="TurfBooking" Type="TurfModel.Store.TurfBookings" Multiplicity="1" />
-    <End Role="TurfMaster" Type="TurfModel.Store.TurfMasters" Multiplicity="*" />
+    <End Role="TurfBookingFacilityList" Type="TurfModel.Store.TurfBookingFacilityLists" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="TurfBooking">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="TurfMaster">
-        <PropertyRef Name="TurfBooking_Id" />
+      <Dependent Role="TurfBookingFacilityList">
+        <PropertyRef Name="TurfBookingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TurfBookingFacilityListTurfFacilityList">
+    <End Role="TurfFacilityList" Type="TurfModel.Store.TurfFacilityLists" Multiplicity="1" />
+    <End Role="TurfBookingFacilityList" Type="TurfModel.Store.TurfBookingFacilityLists" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TurfFacilityList">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TurfBookingFacilityList">
+        <PropertyRef Name="TurfFacilityListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TurfMasterTurfBooking">
+    <End Role="TurfMaster" Type="TurfModel.Store.TurfMasters" Multiplicity="1" />
+    <End Role="TurfBooking" Type="TurfModel.Store.TurfBookings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TurfMaster">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TurfBooking">
+        <PropertyRef Name="TurfMasterId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -265,7 +278,6 @@
           <EntitySet Name="TurfBookings" EntityType="TurfModel.TurfBooking" />
           <EntitySet Name="TurfFecilityMasters" EntityType="TurfModel.TurfFecilityMaster" />
           <EntitySet Name="TurfFacilityLists" EntityType="TurfModel.TurfFacilityList" />
-          <EntitySet Name="TurfBookingFacilityLists" EntityType="TurfModel.TurfBookingFacilityList" />
           <AssociationSet Name="TurfUserTurfMaster" Association="TurfModel.TurfUserTurfMaster">
             <End Role="TurfUser" EntitySet="TurfUsers" />
             <End Role="TurfMaster" EntitySet="TurfMasters" />
@@ -290,17 +302,22 @@
             <End Role="TurfFecilityMaster" EntitySet="TurfFecilityMasters" />
             <End Role="TurfFacilityList" EntitySet="TurfFacilityLists" />
           </AssociationSet>
-          <AssociationSet Name="TurfFecilityMasterTurfBookingFacilityList" Association="TurfModel.TurfFecilityMasterTurfBookingFacilityList">
-            <End Role="TurfFecilityMaster" EntitySet="TurfFecilityMasters" />
-            <End Role="TurfBookingFacilityList" EntitySet="TurfBookingFacilityLists" />
-          </AssociationSet>
           <AssociationSet Name="TurfMasterTurfFacilityList" Association="TurfModel.TurfMasterTurfFacilityList">
             <End Role="TurfMaster" EntitySet="TurfMasters" />
             <End Role="TurfFacilityList" EntitySet="TurfFacilityLists" />
           </AssociationSet>
-          <AssociationSet Name="TurfMasterTurfBooking" Association="TurfModel.TurfMasterTurfBooking">
+          <EntitySet Name="TurfBookingFacilityLists" EntityType="TurfModel.TurfBookingFacilityList" />
+          <AssociationSet Name="TurfBookingTurfBookingFacilityList" Association="TurfModel.TurfBookingTurfBookingFacilityList">
             <End Role="TurfBooking" EntitySet="TurfBookings" />
+            <End Role="TurfBookingFacilityList" EntitySet="TurfBookingFacilityLists" />
+          </AssociationSet>
+          <AssociationSet Name="TurfBookingFacilityListTurfFacilityList" Association="TurfModel.TurfBookingFacilityListTurfFacilityList">
+            <End Role="TurfFacilityList" EntitySet="TurfFacilityLists" />
+            <End Role="TurfBookingFacilityList" EntitySet="TurfBookingFacilityLists" />
+          </AssociationSet>
+          <AssociationSet Name="TurfMasterTurfBooking" Association="TurfModel.TurfMasterTurfBooking">
             <End Role="TurfMaster" EntitySet="TurfMasters" />
+            <End Role="TurfBooking" EntitySet="TurfBookings" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="TurfUser">
@@ -313,7 +330,7 @@
           <Property Name="Address" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />
           <Property Name="Phone" Type="String" Nullable="false" />
-          <Property Name="UserType" Type="String" Nullable="false" />
+          <Property Name="UserType" Type="Int16" Nullable="false" />
           <NavigationProperty Name="TurfMasters" Relationship="TurfModel.TurfUserTurfMaster" FromRole="TurfUser" ToRole="TurfMaster" />
           <NavigationProperty Name="TurfBookings" Relationship="TurfModel.TurfUserTurfBooking" FromRole="TurfUser" ToRole="TurfBooking" />
           <NavigationProperty Name="TurfGroups" Relationship="TurfModel.TurfUserTurfGroup" FromRole="TurfUser" ToRole="TurfGroup" />
@@ -326,14 +343,15 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Location" Type="String" Nullable="false" />
-          <Property Name="TurfGroupId" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
           <Property Name="TurfUserId" Type="Int32" Nullable="false" />
           <Property Name="TypeofTurfId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfUser" Relationship="TurfModel.TurfUserTurfMaster" FromRole="TurfMaster" ToRole="TurfUser" />
           <NavigationProperty Name="TypeofTurf" Relationship="TurfModel.TypeofTurfTurfMaster" FromRole="TurfMaster" ToRole="TypeofTurf" />
           <NavigationProperty Name="TurfMedias" Relationship="TurfModel.TurfMasterTurfMedia" FromRole="TurfMaster" ToRole="TurfMedia" />
           <NavigationProperty Name="TurfFacilityLists" Relationship="TurfModel.TurfMasterTurfFacilityList" FromRole="TurfMaster" ToRole="TurfFacilityList" />
-          <NavigationProperty Name="TurfBooking" Relationship="TurfModel.TurfMasterTurfBooking" FromRole="TurfMaster" ToRole="TurfBooking" />
+          <NavigationProperty Name="TurfBookings" Relationship="TurfModel.TurfMasterTurfBooking" FromRole="TurfMaster" ToRole="TurfBooking" />
         </EntityType>
         <EntityType Name="TurfGroup">
           <Key>
@@ -366,16 +384,17 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RegistrationDate" Type="DateTime" />
+          <Property Name="RegistrationDate" Type="DateTime" Nullable="true" />
           <Property Name="RegistrationTime" Type="DateTime" Nullable="true" />
-          <Property Name="Amount" Type="Decimal" Nullable="true" />
-          <Property Name="ApprovedStatus" Type="String" Nullable="true" />
-          <Property Name="PaymentStatus" Type="String" Nullable="true" />
-          <Property Name="AprovalDate" Type="String" Nullable="false" />
-          <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="true" Precision="18" Scale="2" DefaultValue="0.00" />
+          <Property Name="ApprovedStatus" Type="Int32" Nullable="true" />
+          <Property Name="PaymentStatus" Type="Int32" Nullable="true" />
+          <Property Name="AprovalDate" Type="DateTime" Nullable="true" />
           <Property Name="TurfUserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfUser" Relationship="TurfModel.TurfUserTurfBooking" FromRole="TurfBooking" ToRole="TurfUser" />
-          <NavigationProperty Name="TurfMasters" Relationship="TurfModel.TurfMasterTurfBooking" FromRole="TurfBooking" ToRole="TurfMaster" />
+          <NavigationProperty Name="TurfBookingFacilityLists" Relationship="TurfModel.TurfBookingTurfBookingFacilityList" FromRole="TurfBooking" ToRole="TurfBookingFacilityList" />
+          <NavigationProperty Name="TurfMaster" Relationship="TurfModel.TurfMasterTurfBooking" FromRole="TurfBooking" ToRole="TurfMaster" />
+          <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="TurfFecilityMaster">
           <Key>
@@ -384,7 +403,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" Nullable="false" />
           <NavigationProperty Name="TurfFacilityLists" Relationship="TurfModel.TurfFecilityMasterTurfFacilityList" FromRole="TurfFecilityMaster" ToRole="TurfFacilityList" />
-          <NavigationProperty Name="TurfBookingFacilityLists" Relationship="TurfModel.TurfFecilityMasterTurfBookingFacilityList" FromRole="TurfFecilityMaster" ToRole="TurfBookingFacilityList" />
         </EntityType>
         <EntityType Name="TurfFacilityList">
           <Key>
@@ -392,25 +410,13 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="Amount" Type="String" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IsDefault" Type="Int32" Nullable="false" DefaultValue="0" />
           <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
           <Property Name="TurfFecilityMasterId" Type="Int32" Nullable="false" />
-          <Property Name="IsDefault" Type="String" Nullable="false" />
           <NavigationProperty Name="TurfFecilityMaster" Relationship="TurfModel.TurfFecilityMasterTurfFacilityList" FromRole="TurfFacilityList" ToRole="TurfFecilityMaster" />
           <NavigationProperty Name="TurfMaster" Relationship="TurfModel.TurfMasterTurfFacilityList" FromRole="TurfFacilityList" ToRole="TurfMaster" />
-        </EntityType>
-        <EntityType Name="TurfBookingFacilityList">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TurfFacilityMasterId" Type="String" Nullable="false" />
-          <Property Name="BookingId" Type="String" Nullable="false" />
-          <Property Name="Amount" Type="String" Nullable="false" />
-          <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
-          <Property Name="TurfFecilityMasterId" Type="Int32" Nullable="false" />
-          <Property Name="TurfBookingId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TurfFecilityMaster" Relationship="TurfModel.TurfFecilityMasterTurfBookingFacilityList" FromRole="TurfBookingFacilityList" ToRole="TurfFecilityMaster" />
+          <NavigationProperty Name="TurfBookingFacilityLists" Relationship="TurfModel.TurfBookingFacilityListTurfFacilityList" FromRole="TurfFacilityList" ToRole="TurfBookingFacilityList" />
         </EntityType>
         <Association Name="TurfUserTurfMaster">
           <End Type="TurfModel.TurfUser" Role="TurfUser" Multiplicity="1" />
@@ -484,18 +490,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TurfFecilityMasterTurfBookingFacilityList">
-          <End Type="TurfModel.TurfFecilityMaster" Role="TurfFecilityMaster" Multiplicity="1" />
-          <End Type="TurfModel.TurfBookingFacilityList" Role="TurfBookingFacilityList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TurfFecilityMaster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TurfBookingFacilityList">
-              <PropertyRef Name="TurfFecilityMasterId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="TurfMasterTurfFacilityList">
           <End Type="TurfModel.TurfMaster" Role="TurfMaster" Multiplicity="1" />
           <End Type="TurfModel.TurfFacilityList" Role="TurfFacilityList" Multiplicity="*" />
@@ -508,9 +502,52 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TurfMasterTurfBooking">
+        <EntityType Name="TurfBookingFacilityList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="Decimal" Nullable="true" Precision="18" Scale="2" DefaultValue="0.00" />
+          <NavigationProperty Name="TurfBooking" Relationship="TurfModel.TurfBookingTurfBookingFacilityList" FromRole="TurfBookingFacilityList" ToRole="TurfBooking" />
+          <Property Name="TurfBookingId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TurfFacilityList" Relationship="TurfModel.TurfBookingFacilityListTurfFacilityList" FromRole="TurfBookingFacilityList" ToRole="TurfFacilityList" />
+          <Property Name="TurfFacilityListId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TurfBookingTurfBookingFacilityList">
           <End Type="TurfModel.TurfBooking" Role="TurfBooking" Multiplicity="1" />
-          <End Type="TurfModel.TurfMaster" Role="TurfMaster" Multiplicity="*" />
+          <End Type="TurfModel.TurfBookingFacilityList" Role="TurfBookingFacilityList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TurfBooking">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TurfBookingFacilityList">
+              <PropertyRef Name="TurfBookingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TurfBookingFacilityListTurfFacilityList">
+          <End Type="TurfModel.TurfFacilityList" Role="TurfFacilityList" Multiplicity="1" />
+          <End Type="TurfModel.TurfBookingFacilityList" Role="TurfBookingFacilityList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TurfFacilityList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TurfBookingFacilityList">
+              <PropertyRef Name="TurfFacilityListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TurfMasterTurfBooking">
+          <End Type="TurfModel.TurfMaster" Role="TurfMaster" Multiplicity="1" />
+          <End Type="TurfModel.TurfBooking" Role="TurfBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TurfMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TurfBooking">
+              <PropertyRef Name="TurfMasterId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -538,7 +575,8 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Location" ColumnName="Location" />
-          <ScalarProperty Name="TurfGroupId" ColumnName="TurfGroupId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="TurfUserId" ColumnName="TurfUserId" />
           <ScalarProperty Name="TypeofTurfId" ColumnName="TypeofTurfId" />
         </MappingFragment>
@@ -580,8 +618,8 @@
           <ScalarProperty Name="ApprovedStatus" ColumnName="ApprovedStatus" />
           <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
           <ScalarProperty Name="AprovalDate" ColumnName="AprovalDate" />
-          <ScalarProperty Name="TurfMasterId" ColumnName="TurfMasterId" />
           <ScalarProperty Name="TurfUserId" ColumnName="TurfUserId" />
+          <ScalarProperty Name="TurfMasterId" ColumnName="TurfMasterId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -599,9 +637,9 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
           <ScalarProperty Name="TurfMasterId" ColumnName="TurfMasterId" />
           <ScalarProperty Name="TurfFecilityMasterId" ColumnName="TurfFecilityMasterId" />
-          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -609,23 +647,12 @@
       <EntityTypeMapping TypeName="IsTypeOf(TurfModel.TurfBookingFacilityList)">
         <MappingFragment StoreEntitySet="TurfBookingFacilityLists">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="TurfFacilityMasterId" ColumnName="TurfFacilityMasterId" />
-          <ScalarProperty Name="BookingId" ColumnName="BookingId" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="TurfMasterId" ColumnName="TurfMasterId" />
-          <ScalarProperty Name="TurfFecilityMasterId" ColumnName="TurfFecilityMasterId" />
           <ScalarProperty Name="TurfBookingId" ColumnName="TurfBookingId" />
+          <ScalarProperty Name="TurfFacilityListId" ColumnName="TurfFacilityListId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="TurfMasterTurfBooking" TypeName="TurfModel.TurfMasterTurfBooking" StoreEntitySet="TurfMasters">
-      <EndProperty Name="TurfBooking">
-        <ScalarProperty Name="Id" ColumnName="TurfBooking_Id" />
-      </EndProperty>
-      <EndProperty Name="TurfMaster">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
