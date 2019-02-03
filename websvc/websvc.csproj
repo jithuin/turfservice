@@ -105,13 +105,13 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\TurfBookingController.cs" />
-    <Compile Include="Controllers\TurfBookingFacilityListController.cs" />
-    <Compile Include="Controllers\TurfFacilityListController.cs" />
-    <Compile Include="Controllers\TurfFacilityMasterController.cs" />
-    <Compile Include="Controllers\TurfGroupController.cs" />
-    <Compile Include="Controllers\TurfMasterController.cs" />
-    <Compile Include="Controllers\TurfMediaController.cs" />
+    <Compile Include="Controllers\TurfBookingFacilityListsController.cs" />
+    <Compile Include="Controllers\TurfBookingsController.cs" />
+    <Compile Include="Controllers\TurfFecilityMastersController.cs" />
+    <Compile Include="Controllers\TurfGroupsController.cs" />
+    <Compile Include="Controllers\TurfMastersController.cs" />
+    <Compile Include="Controllers\TurfMediasController.cs" />
+    <Compile Include="Controllers\TurfUsersController.cs" />
     <Compile Include="Controllers\TypeofTurfsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
