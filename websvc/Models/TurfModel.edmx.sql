@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/03/2019 12:06:09
+-- Date Created: 02/04/2019 09:50:28
 -- Generated from EDMX file: D:\TheBackup\OneDrive\Projects\TurfProjects\Projects\websvc\websvc\Models\TurfModel.edmx
 -- --------------------------------------------------
 
@@ -38,8 +38,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TurfMasterTurfFacilityList]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TurfFacilityLists] DROP CONSTRAINT [FK_TurfMasterTurfFacilityList];
 GO
+IF OBJECT_ID(N'[dbo].[FK_TurfBookingTurfBookingFacilityList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfBookingFacilityLists] DROP CONSTRAINT [FK_TurfBookingTurfBookingFacilityList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TurfBookingFacilityListTurfFacilityList]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TurfBookingFacilityLists] DROP CONSTRAINT [FK_TurfBookingFacilityListTurfFacilityList];
+GO
 IF OBJECT_ID(N'[dbo].[FK_TurfMasterTurfBooking]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TurfMasters] DROP CONSTRAINT [FK_TurfMasterTurfBooking];
+    ALTER TABLE [dbo].[TurfBookings] DROP CONSTRAINT [FK_TurfMasterTurfBooking];
 GO
 
 -- --------------------------------------------------
@@ -69,6 +75,9 @@ IF OBJECT_ID(N'[dbo].[TurfFecilityMasters]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[TurfFacilityLists]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TurfFacilityLists];
+GO
+IF OBJECT_ID(N'[dbo].[TurfBookingFacilityLists]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TurfBookingFacilityLists];
 GO
 
 -- --------------------------------------------------
@@ -103,7 +112,7 @@ GO
 -- Creating table 'TurfGroups'
 CREATE TABLE [dbo].[TurfGroups] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Discription] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
     [TurfUserId] int  NOT NULL
 );
 GO

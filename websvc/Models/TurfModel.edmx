@@ -86,7 +86,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Discription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TurfUserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TypeofTurfs">
@@ -358,7 +358,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Discription" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="TurfUserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfUser" Relationship="TurfModel.TurfUserTurfGroup" FromRole="TurfGroup" ToRole="TurfUser" />
         </EntityType>
@@ -586,7 +586,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(TurfModel.TurfGroup)">
         <MappingFragment StoreEntitySet="TurfGroups">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Discription" ColumnName="Discription" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="TurfUserId" ColumnName="TurfUserId" />
         </MappingFragment>
       </EntityTypeMapping>

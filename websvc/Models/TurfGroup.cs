@@ -15,7 +15,7 @@ namespace websvc.Models
     public partial class TurfGroup
     {
         public int Id { get; set; }
-        public string Discription { get; set; }
+        public string Description { get; set; }
         public int TurfUserId { get; set; }
     
         public virtual TurfUser TurfUser { get; set; }
