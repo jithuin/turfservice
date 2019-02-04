@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/04/2019 09:50:28
+-- Date Created: 02/04/2019 11:23:36
 -- Generated from EDMX file: D:\TheBackup\OneDrive\Projects\TurfProjects\Projects\websvc\websvc\Models\TurfModel.edmx
 -- --------------------------------------------------
 
@@ -101,9 +101,11 @@ CREATE TABLE [dbo].[TurfMasters] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [Location] nvarchar(max)  NOT NULL,
     [Address] nvarchar(max)  NOT NULL,
     [Phone] nvarchar(max)  NOT NULL,
+    [Location] nvarchar(max)  NOT NULL,
+    [Lat] decimal(10,6)  NOT NULL,
+    [Lng] decimal(10,6)  NOT NULL,
     [TurfUserId] int  NOT NULL,
     [TypeofTurfId] int  NOT NULL
 );

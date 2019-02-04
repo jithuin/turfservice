@@ -75,9 +75,11 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Lat" Type="decimal" Nullable="false" Precision="10" Scale="6" />
+    <Property Name="Lng" Type="decimal" Nullable="false" Precision="10" Scale="6" />
     <Property Name="TurfUserId" Type="int" Nullable="false" />
     <Property Name="TypeofTurfId" Type="int" Nullable="false" />
   </EntityType>
@@ -342,9 +344,11 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="Location" Type="String" Nullable="false" />
           <Property Name="Address" Type="String" Nullable="false" />
           <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Location" Type="String" Nullable="false" />
+          <Property Name="Lat" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
+          <Property Name="Lng" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
           <Property Name="TurfUserId" Type="Int32" Nullable="false" />
           <Property Name="TypeofTurfId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfUser" Relationship="TurfModel.TurfUserTurfMaster" FromRole="TurfMaster" ToRole="TurfUser" />
@@ -574,9 +578,11 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Lng" ColumnName="Lng" />
           <ScalarProperty Name="TurfUserId" ColumnName="TurfUserId" />
           <ScalarProperty Name="TypeofTurfId" ColumnName="TypeofTurfId" />
         </MappingFragment>
