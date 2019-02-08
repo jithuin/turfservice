@@ -124,6 +124,7 @@
     <Compile Include="Controllers\TurfGroupsController.cs" />
     <Compile Include="Controllers\TurfMastersController.cs" />
     <Compile Include="Controllers\TurfMediasController.cs" />
+    <Compile Include="Controllers\TurfMediaUploadController.cs" />
     <Compile Include="Controllers\TurfUsersController.cs" />
     <Compile Include="Controllers\TypeofTurfsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="TurfImages\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
