@@ -10,7 +10,7 @@ using System.Web.Http.Cors;
 
 namespace websvc.Controllers
 {
-    [EnableCors(origins: "http://localhost", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Upload")]
     public class TurfMediaUploadController : ApiController
     {

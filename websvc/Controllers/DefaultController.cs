@@ -8,7 +8,7 @@ using System.Web.Http.Cors;
 
 namespace websvc.Controllers
 {
-    [EnableCors(origins: "http://localhost", headers: "*", methods: "*")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DefaultController : ApiController
 
     {
