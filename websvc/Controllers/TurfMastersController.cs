@@ -8,11 +8,13 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using websvc.Models;
 
 namespace websvc.Controllers
 {
+    [EnableCors(origins: "http://localhost", headers: "*", methods: "*")]
     public class TurfMastersController : ApiController
     {
         private TurfModelContainer1 db = new TurfModelContainer1();
