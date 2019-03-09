@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using websvc.Authentication;
 
 namespace websvc
 {
@@ -12,6 +13,8 @@ namespace websvc
         {
             // Web API configuration and services
             config.EnableCors();
+            // handler
+            config.MessageHandlers.Add(new TokenValidationHandler());
             // Web API routes
             config.MapHttpAttributeRoutes();
 

@@ -12,9 +12,10 @@ namespace websvc.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Upload")]
+    [Authorize]
     public class TurfMediaUploadController : ApiController
     {
-        [AllowAnonymous]
+       
         public async Task<HttpResponseMessage> PostTurfMediaUpload(int id)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();

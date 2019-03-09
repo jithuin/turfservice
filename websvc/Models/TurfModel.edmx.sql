@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/04/2019 11:23:36
+-- Date Created: 03/04/2019 12:52:19
 -- Generated from EDMX file: D:\TheBackup\OneDrive\Projects\TurfProjects\Projects\websvc\websvc\Models\TurfModel.edmx
 -- --------------------------------------------------
 
@@ -87,23 +87,25 @@ GO
 -- Creating table 'TurfUsers'
 CREATE TABLE [dbo].[TurfUsers] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Username] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL,
-    [Phone] nvarchar(max)  NOT NULL,
-    [UserType] smallint  NOT NULL
+    [Username] nvarchar(20)  NOT NULL,
+    [Password] nvarchar(20)  NOT NULL,
+    [Address] nvarchar(100)  NOT NULL,
+    [Email] nvarchar(50)  NOT NULL,
+    [Phone] nvarchar(50)  NOT NULL,
+    [UserType] smallint  NOT NULL,
+    [FirstName] nvarchar(50)  NOT NULL,
+    [LastName] nvarchar(50)  NOT NULL
 );
 GO
 
 -- Creating table 'TurfMasters'
 CREATE TABLE [dbo].[TurfMasters] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Name] nvarchar(max)  NOT NULL,
-    [Description] nvarchar(max)  NOT NULL,
-    [Address] nvarchar(max)  NOT NULL,
-    [Phone] nvarchar(max)  NOT NULL,
-    [Location] nvarchar(max)  NOT NULL,
+    [Name] nvarchar(100)  NOT NULL,
+    [Description] nvarchar(150)  NOT NULL,
+    [Address] nvarchar(100)  NOT NULL,
+    [Phone] nvarchar(50)  NOT NULL,
+    [Location] nvarchar(50)  NOT NULL,
     [Lat] decimal(10,6)  NOT NULL,
     [Lng] decimal(10,6)  NOT NULL,
     [TurfUserId] int  NOT NULL,
@@ -114,7 +116,7 @@ GO
 -- Creating table 'TurfGroups'
 CREATE TABLE [dbo].[TurfGroups] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Description] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(50)  NOT NULL,
     [TurfUserId] int  NOT NULL
 );
 GO
@@ -122,14 +124,14 @@ GO
 -- Creating table 'TypeofTurfs'
 CREATE TABLE [dbo].[TypeofTurfs] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Description] nvarchar(max)  NOT NULL
+    [Description] nvarchar(50)  NOT NULL
 );
 GO
 
 -- Creating table 'TurfMedias'
 CREATE TABLE [dbo].[TurfMedias] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [FileLocation] nvarchar(max)  NULL,
+    [FileLocation] nvarchar(80)  NULL,
     [TurfMasterId] int  NOT NULL
 );
 GO
@@ -151,14 +153,14 @@ GO
 -- Creating table 'TurfFecilityMasters'
 CREATE TABLE [dbo].[TurfFecilityMasters] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Description] nvarchar(max)  NOT NULL
+    [Description] nvarchar(50)  NOT NULL
 );
 GO
 
 -- Creating table 'TurfFacilityLists'
 CREATE TABLE [dbo].[TurfFacilityLists] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Description] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(50)  NOT NULL,
     [Amount] decimal(18,2)  NOT NULL,
     [IsDefault] int  NOT NULL,
     [TurfMasterId] int  NOT NULL,

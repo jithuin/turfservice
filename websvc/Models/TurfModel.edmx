@@ -61,23 +61,25 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="UserType" Type="smallint" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="TurfMasters">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Location" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Lat" Type="decimal" Nullable="false" Precision="10" Scale="6" />
     <Property Name="Lng" Type="decimal" Nullable="false" Precision="10" Scale="6" />
     <Property Name="TurfUserId" Type="int" Nullable="false" />
@@ -88,7 +90,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="TurfUserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TypeofTurfs">
@@ -96,14 +98,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="TurfMedias">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FileLocation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileLocation" Type="nvarchar" Nullable="true" MaxLength="80" />
     <Property Name="TurfMasterId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TurfBookings">
@@ -125,14 +127,14 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="TurfFacilityLists">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Amount" Type="decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="IsDefault" Type="int" Nullable="false" DefaultValue="0" />
     <Property Name="TurfMasterId" Type="int" Nullable="false" />
@@ -327,26 +329,28 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" />
-          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="UserType" Type="Int16" Nullable="false" />
           <NavigationProperty Name="TurfMasters" Relationship="TurfModel.TurfUserTurfMaster" FromRole="TurfUser" ToRole="TurfMaster" />
           <NavigationProperty Name="TurfBookings" Relationship="TurfModel.TurfUserTurfBooking" FromRole="TurfUser" ToRole="TurfBooking" />
           <NavigationProperty Name="TurfGroups" Relationship="TurfModel.TurfUserTurfGroup" FromRole="TurfUser" ToRole="TurfGroup" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="TurfMaster">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" />
-          <Property Name="Description" Type="String" Nullable="false" />
-          <Property Name="Address" Type="String" Nullable="false" />
-          <Property Name="Phone" Type="String" Nullable="false" />
-          <Property Name="Location" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Location" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Lat" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
           <Property Name="Lng" Type="Decimal" Nullable="false" Precision="10" Scale="6" />
           <Property Name="TurfUserId" Type="Int32" Nullable="false" />
@@ -362,7 +366,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="TurfUserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfUser" Relationship="TurfModel.TurfUserTurfGroup" FromRole="TurfGroup" ToRole="TurfUser" />
         </EntityType>
@@ -371,7 +375,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
           <NavigationProperty Name="TurfMasters" Relationship="TurfModel.TypeofTurfTurfMaster" FromRole="TypeofTurf" ToRole="TurfMaster" />
         </EntityType>
         <EntityType Name="TurfMedia">
@@ -379,7 +383,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileLocation" Type="String" Nullable="true" />
+          <Property Name="FileLocation" Type="String" Nullable="true" MaxLength="80" />
           <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="TurfMaster" Relationship="TurfModel.TurfMasterTurfMedia" FromRole="TurfMedia" ToRole="TurfMaster" />
         </EntityType>
@@ -405,7 +409,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
           <NavigationProperty Name="TurfFacilityLists" Relationship="TurfModel.TurfFecilityMasterTurfFacilityList" FromRole="TurfFecilityMaster" ToRole="TurfFacilityList" />
         </EntityType>
         <EntityType Name="TurfFacilityList">
@@ -413,7 +417,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" />
           <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="IsDefault" Type="Int32" Nullable="false" DefaultValue="0" />
           <Property Name="TurfMasterId" Type="Int32" Nullable="false" />
@@ -569,6 +573,8 @@
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

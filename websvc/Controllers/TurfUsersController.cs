@@ -12,6 +12,7 @@ using websvc.Models;
 namespace websvc.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [AllowAnonymous]
     public class TurfUsersController : ApiController
     {
         private TurfModelContainer1 db = new TurfModelContainer1();
@@ -24,6 +25,7 @@ namespace websvc.Controllers
 
         // GET: api/TurfUsers/5
         [ResponseType(typeof(TurfUser))]
+        [Authorize]
         public async Task<IHttpActionResult> GetTurfUser(int id)
         {
             TurfUser turfUser = await db.TurfUsers.FindAsync(id);
@@ -37,6 +39,7 @@ namespace websvc.Controllers
 
         // PUT: api/TurfUsers/5
         [ResponseType(typeof(void))]
+        [Authorize]
         public async Task<IHttpActionResult> PutTurfUser(int id, TurfUser turfUser)
         {
             if (!ModelState.IsValid)
@@ -87,6 +90,7 @@ namespace websvc.Controllers
 
         // DELETE: api/TurfUsers/5
         [ResponseType(typeof(TurfUser))]
+        [Authorize]
         public async Task<IHttpActionResult> DeleteTurfUser(int id)
         {
             TurfUser turfUser = await db.TurfUsers.FindAsync(id);

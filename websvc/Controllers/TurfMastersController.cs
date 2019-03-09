@@ -15,6 +15,7 @@ using websvc.Models;
 namespace websvc.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [Authorize]
     public class TurfMastersController : ApiController
     {
         private TurfModelContainer1 db = new TurfModelContainer1();
